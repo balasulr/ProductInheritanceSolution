@@ -12,11 +12,13 @@ namespace ProductInheritanceProject {
             Product widget2 = new Widget("W2", 100, "Medium", "White");
             Product widget3 = new Widget("W3", 200, "Large", "Blue");
             Product service = new Service("SVC", 500, "Premium", 5);
+            Product software = new Software("SFTW", 150, true);
             // Adding the 4 Products to the collection using the Add method
             salesOrder.Add(widget1);
             salesOrder.Add(widget2);
             salesOrder.Add(widget3);
             salesOrder.Add(service);
+            salesOrder.Add(software);
             // Display the Sales Order with the Widgets & Service & Total how much will cost
             decimal salesOrderTotal = 0;
             foreach (Product p in salesOrder) {// salesOrder is name of the collection
@@ -29,6 +31,11 @@ namespace ProductInheritanceProject {
                 if(p is Service) {
                     Service s = p as Service;
                     Console.WriteLine($"{s.Code} {s.Price:c} {s.ServiceLevel} {s.NumberOfYears}");
+                    continue;
+                }
+                if(p is Software) {
+                    Software soft = p as Software; // Could use s for soft since there are different scopes
+                    Console.WriteLine($"{soft.Code} {soft.Price:c} {(soft.Book ? "With book" : "Without Book")}");
                     continue;
                 }
             }
@@ -49,7 +56,6 @@ namespace ProductInheritanceProject {
             //Product p = new Product("Echo", 123.45m);
             //string message = p.ToPrint();
             //Console.WriteLine(message); // Shorter way to put is cw then tab twice
-
         }
     }
 }
